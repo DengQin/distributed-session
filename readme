@@ -1,4 +1,4 @@
-这是一个基于Redis方式的分布式session管理，实现较为简单
+这是一个基于Redis方式的分布式session管理，实现较为简单，可以直接打包jar，作为插件引入
 使用说明：
         在Spring的web.xml里面加入Filter过滤就可以了。
 
