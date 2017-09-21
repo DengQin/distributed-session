@@ -1,0 +1,30 @@
+这是一个基于Redis方式的分布式session管理，实现较为简单
+使用说明：
+        在Spring的web.xml里面加入Filter过滤就可以了。
+
+        <filter>
+            <filter-name>distributedSessionFilter</filter-name>
+            <filter-class>com.dengqin.session.distributed.DistributedSessionFilter</filter-class>
+            <init-param>
+                <!-- 必填，密钥。有2种方式,（1）对应为bean，格式为bean:key。（2）字符串,格式如:xxxxx -->
+                <param-name>key</param-name>
+                <param-value>123456789</param-value>
+            </init-param>
+            <init-param>
+                <!-- 必填，redis对应的bean,格式为bean:xxxxxx-->
+                <param-name>cacheBean</param-name>
+                <param-value>bean:redisPersistent</param-value>
+            </init-param>
+            <init-param>
+                <!-- 必填， -->
+                <param-name>cookieName</param-name>
+                <param-value>aaaaaaaaaaaaaaa</param-value>
+            </init-param>
+        </filter>
+
+        <filter-mapping>
+            <filter-name>distributedSessionFilter</filter-name>
+            <url-pattern>*.do</url-pattern>
+        </filter-mapping>
+
+        其中需要redisPersistent实现 com.dengqin.session.distributed.DistributedBaseInterFace 接口
